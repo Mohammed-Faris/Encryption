@@ -3,6 +3,7 @@ import 'package:storagesecure/components/app_bar.dart';
 import 'package:storagesecure/components/primary_btn.dart';
 import 'package:storagesecure/components/spacer.dart';
 import 'package:storagesecure/components/text_form_field.dart';
+import 'package:storagesecure/constants.dart';
 import 'package:storagesecure/constants/constant.dart';
 import 'package:storagesecure/localstorage/secure_storage.dart';
 
@@ -65,6 +66,7 @@ class _HomePageState extends State<HomePage> {
               PrimaryBtn(
                   btnText: "Read Data",
                   btnFun: () {
+                    Navigator.pushNamed(context, dataPage);
                     SecureStorage().readSecureData('name');
                   }),
               HeightSpacer(myHeight: kSpacing * 1),

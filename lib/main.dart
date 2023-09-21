@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:storagesecure/screens/homePage.dart';
+import 'package:flutter/services.dart';
+import 'package:storagesecure/constants.dart';
+import 'package:storagesecure/routes.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(const MyApp());
 }
 
@@ -17,7 +22,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomePage(title: 'Flutter Secure Storage'),
+      // home: const HomePage(title: 'Flutter Secure Storage'),
+      onGenerateRoute: Routes.generateRoute,
+      initialRoute: homePage,
     );
   }
 }
