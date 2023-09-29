@@ -59,12 +59,13 @@ class _HomePageState extends State<HomePage> {
               PrimaryBtn(
                   btnText: "Store Data",
                   btnFun: () {
+                    // Navigator.pushNamed(context, videoPage);
                     SecureStorage()
                         .writeSecureData('name', textEditingController.text);
                   }),
               HeightSpacer(myHeight: kSpacing * 1),
               PrimaryBtn(
-                  btnText: "Read Data",
+                  btnText: "Read Data / Nav to Landscape",
                   btnFun: () {
                     Navigator.pushNamed(context, dataPage);
                     SecureStorage().readSecureData('name');
@@ -74,6 +75,18 @@ class _HomePageState extends State<HomePage> {
                   btnText: 'Delete Data',
                   btnFun: () {
                     SecureStorage().deleteSecureData('name');
+                  }),
+              HeightSpacer(myHeight: kSpacing * 1),
+              PrimaryBtn(
+                  btnText: 'Video Playback',
+                  btnFun: () {
+                    Navigator.pushNamed(context, videoPage);
+                  }),
+              HeightSpacer(myHeight: kSpacing * 1),
+              PrimaryBtn(
+                  btnText: 'Expandable list',
+                  btnFun: () {
+                    Navigator.pushNamed(context, Expandpage);
                   }),
             ],
           ),
