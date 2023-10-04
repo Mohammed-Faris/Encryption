@@ -31,6 +31,22 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
+  MaterialBanner materialBanner(BuildContext context) {
+    return MaterialBanner(
+      content: const Text('Would you like to store it?'),
+      leading: const Icon(Icons.store_rounded),
+      backgroundColor: Colors.yellow.shade100,
+      actions: [
+        TextButton(onPressed: () {}, child: const Text('Confirm')),
+        TextButton(
+            onPressed: () {
+              ScaffoldMessenger.of(context).clearMaterialBanners();
+            },
+            child: const Text('Cancel'))
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +75,8 @@ class _HomePageState extends State<HomePage> {
               PrimaryBtn(
                   btnText: "Store Data",
                   btnFun: () {
-                    // Navigator.pushNamed(context, videoPage);
+                    ScaffoldMessenger.of(context)
+                        .showMaterialBanner((materialBanner(context)));
                     SecureStorage()
                         .writeSecureData('name', textEditingController.text);
                   }),

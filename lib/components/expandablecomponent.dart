@@ -51,17 +51,15 @@ Widget ExpandableWidget(
                   ),
                   onExpansionChanged: ((newState) {
                     if (newState) {
-                      if (selected != -1) {
-                        // Close the previously expanded tile
-                        context
-                            .read<ExpandBloc>()
-                            .add(ExpandableEvent.collapse);
-                      }
+                      const Duration(seconds: 20000);
 
-                      context.read<ExpandBloc>().add(ExpandableEvent.expand);
+                      context
+                          .read<ExpandBloc>()
+                          .add(ExpansionTileEvent(index: index));
                     } else {
-                      context.read<ExpandBloc>().add(ExpandableEvent.collapse);
-                      // selected = -1; // Collapse the current tile
+                      context
+                          .read<ExpandBloc>()
+                          .add(ExpansionTileEvent(index: -1));
                     }
                   }),
                   children: <Widget>[

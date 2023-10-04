@@ -5,6 +5,6 @@ sealed class ExpandState {}
 final class ExpandInitial extends ExpandState {}
 
 class ExpansionTileState extends ExpandState {
-  int selected = -1;
+  int selected;
   ExpansionTileState({required this.selected});
 }
