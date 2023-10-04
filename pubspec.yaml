@@ -37,10 +37,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_secure_storage: ^9.0.0
   # flutter_webview_plugin: ^0.4.0
-  youtube_player_iframe: ^2.2.2
+  # youtube_player_iframe: ^2.2.2
   cached_network_image: ^3.1.0
   webview_flutter: ^4.2.4
-  
+  flutter_bloc: ^8.1.3
   
   
 

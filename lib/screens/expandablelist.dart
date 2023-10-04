@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:storagesecure/components/expandablecomponent.dart';
 
 class Expandablelist extends StatefulWidget {
   const Expandablelist({Key? key, required this.title}) : super(key: key);
@@ -10,8 +11,20 @@ class Expandablelist extends StatefulWidget {
 }
 
 class _ExpandablelistState extends State<Expandablelist> {
-  // selected's value = 0. For default first item is open.
-  int selected = 0; //attention
+  int selected = 0;
+
+  List<Map<String, dynamic>> listexp = [
+    {
+      "title": "title1",
+      "description":
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    },
+    {
+      "title": "title2",
+      "description":
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -23,68 +36,7 @@ class _ExpandablelistState extends State<Expandablelist> {
       ),
       body: Container(
         color: Colors.white,
-        child: SingleChildScrollView(
-          child: Column(children: [
-            ListView.builder(
-              key: Key('builder ${selected.toString()}'), //attention
-              padding:
-                  const EdgeInsets.only(left: 13.0, right: 13.0, bottom: 25.0),
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                return Column(children: <Widget>[
-                  const Divider(
-                    height: 17.0,
-                    color: Colors.white,
-                  ),
-                  ExpansionTile(
-                    key: Key(index.toString()), //attention
-                    initiallyExpanded: index == selected, //attention
-
-                    leading: const Icon(
-                      Icons.person,
-                      size: 50.0,
-                      color: Colors.black,
-                    ),
-                    title: Text('ExpansionTile $index',
-                        style: const TextStyle(
-                            color: Color(0xFF09216B),
-                            fontSize: 17.0,
-                            fontWeight: FontWeight.bold)),
-                    subtitle: const Text(
-                      'Software Engineer',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 13.0,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    onExpansionChanged: ((newState) {
-                      if (newState) {
-                        setState(() {
-                          const Duration(seconds: 20000);
-                          selected = index;
-                        });
-                      } else {
-                        setState(() {
-                          selected = -1;
-                        });
-                      }
-                    }),
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(25.0),
-                        child: Text(
-                          'DETAİL $index \n' 'Expanded',
-                        ),
-                      )
-                    ],
-                  ),
-                ]);
-              },
-            )
-          ]),
-        ),
+        child: SingleChildScrollView(child: ExpandableWidget(context, listexp)),
       ),
     );
   }
